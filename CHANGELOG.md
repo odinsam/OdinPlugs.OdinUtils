@@ -1,10 +1,10 @@
-# Changelog
+## <small>1.1.1 (2021-07-08)</small>
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+* chore(release): 1.1.1 ([a5f3278](https://github.com/odinsam/OdinPlugs.Utils/commit/a5f3278))
 
-### [1.1.1](https://github.com/odinsam/OdinPlugs.Utils/compare/v1.0.1...v1.1.1) (2021-07-08)
 
-## 1.1.0 (2021-07-08)
+
+## <small>1.0.1 (2021-07-08)</small>
 
 * chore(release): 1.0.1 ([40291c9](https://github.com/odinsam/OdinPlugs.Utils/commit/40291c9))
 
@@ -29,3 +29,6 @@ All notable changes to this project will be documented in this file. See [standa
 * feat(OdinUtils.Utils): ✨ regex 正则判断 ([2c1680b](https://github.com/odinsam/OdinPlugs.Utils/commit/2c1680b))
 * feat(OdinUtils.Utils): ✨ Time 时间操作 ([18a474c](https://github.com/odinsam/OdinPlugs.Utils/commit/18a474c))
 * Initial commit ([7c272db](https://github.com/odinsam/OdinPlugs.Utils/commit/7c272db))
+
+
+
