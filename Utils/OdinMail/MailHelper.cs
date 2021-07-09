@@ -6,7 +6,6 @@ using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using OdinPlugs.OdinUtils.Utils.OdinHttp;
-using Serilog;
 
 namespace OdinPlugs.OdinUtils.Utils.OdinMail
 {
@@ -75,7 +74,7 @@ namespace OdinPlugs.OdinUtils.Utils.OdinMail
                 }
                 catch (System.Exception ex)
                 {
-                    Log.Warning(ex.Message);
+                    throw ex;
                 }
             });
         }
