@@ -1,5 +1,5 @@
-<Project Sdk="Microsoft.NET.Sdk">
-    <Import Project="./common.props"/>
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="./common.props" />
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
         <GeneratePackageOnBuild>$(OdinGeneratePackageOnBuild)</GeneratePackageOnBuild>
@@ -12,14 +12,20 @@
         <Copyright>$(OdinCopyright)</Copyright>
         <Product>$(OdinProduct)</Product>
         <Description>$(OdinDescription)</Description>
-        <Version>$(OdinVersion)</Version>
+        <Version>1.0.5</Version>
         <RepositoryType>$(OdinRepositoryType)</RepositoryType>
         <PackageTags>$(OdinPackageTags)</PackageTags>
         <Title>$(OdinAssemblyName)</Title>
         <PackageProjectUrl>$(OdinGitUrl)/OdinPlugs.Utils.git</PackageProjectUrl>
-        <RepositoryUrl>$(OdinGitUrl)/odinsam/OdinPlugs.Utils.git</RepositoryUrl>
+		<RepositoryUrl>$(OdinGitUrl)/$(OdinAssemblyName)</RepositoryUrl>
+		<RepositoryType>$(OdinRepositoryType)</RepositoryType>
+		<RepositoryBranch>master</RepositoryBranch>
+		<PackageIcon>icon.png</PackageIcon>
     </PropertyGroup>
+	<ItemGroup>
+		<None Include="images\icon.png" Pack="true" PackagePath=""/>
+	</ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     </ItemGroup>
 </Project>
