@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace OdinPlugs.OdinExtensions.RegexExtensions
+namespace OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.RegexExtensions
 {
     public static class OdinRegexExtensions
     {

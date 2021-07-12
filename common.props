@@ -2,14 +2,14 @@
     <PropertyGroup>
         <!-- 变量控制 -->
         <OdinVersion>1.0.1</OdinVersion>
-        <OdinRootNamespace>OdinPlugs</OdinRootNamespace>
+        <OdinRootNamespace>OdinPlugs.OdinUtils</OdinRootNamespace>
         <OdinGeneratePackageOnBuild>true</OdinGeneratePackageOnBuild>
-        <OdinAssemblyName>OdinPlugs.Utils</OdinAssemblyName>
+        <OdinAssemblyName>OdinPlugs.OdinUtils</OdinAssemblyName>
         <!--WinExe、Exe、Library-->
         <OdinOutputType>Library</OdinOutputType>
 
         
-        <OdinPlugsVersion>1.0.0-alpha.210708</OdinPlugsVersion>
+        <OdinPlugsVersion>1.0.6</OdinPlugsVersion>
         <OdinPackageId>$(OdinAssemblyName)</OdinPackageId>
         <OdinAuthors>odinSam</OdinAuthors>
         <OdinCompany>odinsam</OdinCompany>
