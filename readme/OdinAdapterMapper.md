@@ -73,7 +73,10 @@ var stu = stuDbModel.OdinTypeAdapterBuilder<Student_DbModel, Student>(
 ```
 
 7. 集合映射转换 
-泛型参数说明: 将 stuDbModels List<ErrorCode_DbModel> 集合映射转换为 stuLst List<Student> 类型的集合
+
+    将 stuDbModels List<ErrorCode_DbModel> 集合映射转换为 stuLst List<Student> 类型的集合
+
+泛型参数说明: 
 
 |参数名称|说明|
 |:--|:--|
