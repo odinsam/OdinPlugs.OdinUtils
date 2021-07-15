@@ -111,3 +111,7 @@ var stuLst = stuDbModels.OdinTypeAdapterBuilder<Student_DbModel, Student, List<S
 ```
 
 关于 Mapster 更详细的用法，请参照 [Mapster](https://github.com/MapsterMapper/Mapster) 官网。
+
+具体封装代码详见 [Github](https://github.com/odinsam/OdinPlugs.Utils)
+
+项目部分说明在 [OdinSam's blog](https://www.odinsam.com/) 的博客中有文章说明
