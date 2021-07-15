@@ -109,3 +109,5 @@ var stuLst = stuDbModels.OdinTypeAdapterBuilder<Student_DbModel, Student, List<S
         OdinInjectCore.GetService<ITypeAdapterMapster>().GetConfig()
     );
 ```
+
+关于 Mapster 更详细的用法，请参照 [Mapster](https://github.com/MapsterMapper/Mapster) 官网。
