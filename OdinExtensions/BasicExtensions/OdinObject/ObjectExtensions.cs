@@ -53,9 +53,9 @@ namespace OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.OdinObject
         /// <param name="obj">需要转换的对象</param>
         /// <param name="format">是否需要json格式化输出</param>
         /// <returns>转换后的string</returns>
-        public static string ToJson(this Object obj, bool format = false)
+        public static string ToJson(this Object obj, enumStringFormat stringFormat = enumStringFormat.None)
         {
-            if (!format)
+            if (stringFormat == enumStringFormat.None)
                 return JsonConvert.SerializeObject(obj);
             else
                 return JsonConvert.SerializeObject(obj).ToJsonFormatString();

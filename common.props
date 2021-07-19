@@ -10,6 +10,7 @@
 
         
         <OdinPackageId>OdinPlugs.OdinUtils</OdinPackageId>
+        <OdinRootNamespace>OdinPlugs.OdinUtils</OdinRootNamespace>
         <OdinAuthors>odinSam</OdinAuthors>
         <OdinCompany>odinsam</OdinCompany>
         <OdinCopyright>版权所有 (c) odinsam 2021</OdinCopyright>
