@@ -10,7 +10,17 @@ namespace OdinPlugs.OdinSecurity.StringSecurity.StringSecurityExtensions
 {
     public static class StringSecurity
     {
-        public static JObject AddWxNameMark(this Object entity, string fieldName, string newfieldName = null)
+        /// <summary>
+        /// 微信掩码 
+        /// <code>
+        /// 掩码规则： AA******  保留前两位，后续全部使用 * 掩码
+        /// </code>
+        /// </summary>
+        /// <param name="entity">用户对象</param>
+        /// <param name="fieldName">需要掩码的字段</param>
+        /// <param name="newfieldName">掩码后的新字段</param>
+        /// <returns>具有掩码字段的对象</returns>
+        public static JObject AddWxNameMark(this Object entity, string fieldName, string newfieldName)
         {
             var wxName = entity.GetType().GetProperty(fieldName).GetValue(entity).ToString();
             string wxNameMark = null;
@@ -25,7 +35,17 @@ namespace OdinPlugs.OdinSecurity.StringSecurity.StringSecurityExtensions
             return jobj;
         }
 
-        public static JObject AddMailMark(this Object entity, string fieldName, string newfieldName = null)
+        /// <summary>
+        /// 邮箱掩码
+        /// <code>
+        /// 掩码规则：如果 @前的邮箱名 length>3 那么 A***B 收尾保留其余用 * 代替， 否则 不做掩码处理
+        /// </code>
+        /// </summary>
+        /// <param name="entity">用户对象</param>
+        /// <param name="fieldName">需要掩码的字段</param>
+        /// <param name="newfieldName">掩码后的新字段</param>
+        /// <returns>具有掩码字段的对象</returns>
+        public static JObject AddMailMark(this Object entity, string fieldName, string newfieldName)
         {
             var mail = entity.GetType().GetProperty(fieldName).GetValue(entity).ToString().Split('@')[0].ToString();
             string mailMark = null;
@@ -47,7 +67,17 @@ namespace OdinPlugs.OdinSecurity.StringSecurity.StringSecurityExtensions
             return jobj;
         }
 
-        public static JObject AddNameMark(this Object entity, string fieldName, string newfieldName = null)
+        /// <summary>
+        /// 姓名掩码
+        /// <code>
+        /// 掩码规则：1. length=2 A*  2. length=3  A*b   3. 其余 A**B，收尾保留其余用 * 代替
+        /// </code>
+        /// </summary>
+        /// <param name="entity">用户对象</param>
+        /// <param name="fieldName">需要掩码的字段</param>
+        /// <param name="newfieldName">掩码后的新字段</param>
+        /// <returns>具有掩码字段的对象</returns>
+        public static JObject AddNameMark(this Object entity, string fieldName, string newfieldName)
         {
             var userName = entity.GetType().GetProperty(fieldName).GetValue(entity).ToString();
             string userNameMark = null;
@@ -73,7 +103,16 @@ namespace OdinPlugs.OdinSecurity.StringSecurity.StringSecurityExtensions
             return jobj;
         }
 
-
+        /// <summary>
+        /// 身份证掩码
+        /// <code>
+        /// 掩码规则：  ABCDEFGHIJ*******K, 获取前10位和最后一位，奇遇用 掩码 代码
+        /// </code>
+        /// </summary>
+        /// <param name="entity">用户对象</param>
+        /// <param name="fieldName">需要掩码的字段</param>
+        /// <param name="newfieldName">掩码后的新字段</param>
+        /// <returns>具有掩码字段的对象</returns>
         public static JObject AddCardIdMark(this Object entity, string fieldName, string newfieldName = null)
         {
             var cardId = entity.GetType().GetProperty(fieldName).GetValue(entity).ToString();
@@ -83,6 +122,16 @@ namespace OdinPlugs.OdinSecurity.StringSecurity.StringSecurityExtensions
             return jobj;
         }
 
+        /// <summary>
+        /// 电话号码掩码
+        /// <code>
+        /// 掩码规则：  ABC****DEFGHIJ,  前3位 和 后7位，其余用 掩码 代替
+        /// </code>
+        /// </summary>
+        /// <param name="entity">用户对象</param>
+        /// <param name="fieldName">需要掩码的字段</param>
+        /// <param name="newfieldName">掩码后的新字段</param>
+        /// <returns>具有掩码字段的对象</returns>
         public static JObject AddPhoneMark(this Object entity, string fieldName, string newfieldName = null)
         {
             var phone = entity.GetType().GetProperty(fieldName).GetValue(entity).ToString();
@@ -91,6 +140,13 @@ namespace OdinPlugs.OdinSecurity.StringSecurity.StringSecurityExtensions
             jobj.Add(newfieldName ?? $"Mark{fieldName}", phoneMark);
             return jobj;
         }
+
+        /// <summary>
+        /// dm5 加密 转小写
+        /// </summary>
+        /// <param name="str">需要加密的字符串</param>
+        /// <param name="length"></param>
+        /// <returns></returns>
         public static string ToMd5Lower(this string str, int length = 32)
         {
             MD5 md5 = MD5.Create();
@@ -102,7 +158,12 @@ namespace OdinPlugs.OdinSecurity.StringSecurity.StringSecurityExtensions
             }
             return sb.ToString().ToLower().Substring(0, length);
         }
-
+        /// <summary>
+        /// dm5 加密 转大写
+        /// </summary>
+        /// <param name="str">需要加密的字符串</param>
+        /// <param name="length"></param>
+        /// <returns></returns>
         public static string ToMd5Upper(this string str, int length = 32)
         {
             MD5 md5 = MD5.Create();

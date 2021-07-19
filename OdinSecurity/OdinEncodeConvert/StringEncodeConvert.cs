@@ -3,8 +3,9 @@ using System.Text;
 
 namespace OdinPlugs.OdinUtils.OdinSecurity.OdinEncodeConvert
 {
-    public class StringEncodeConvert
+    public static class StringEncodeConvert
     {
+
         /// <summary>
         /// 将指定的16进制字符串转换为byte数组
         /// </summary>

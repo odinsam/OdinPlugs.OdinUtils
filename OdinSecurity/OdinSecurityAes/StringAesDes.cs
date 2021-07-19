@@ -8,23 +8,32 @@ namespace OdinPlugs.OdinUtils.OdinSecurity.OdinSecurityAes
 {
     public class StringAesDes
     {
-        const string AES_IV = "1234567890000000";//16位    
-
         /// <summary>  
         /// AES加密算法  
         /// </summary>  
         /// <param name="input">明文字符串</param>  
         /// <param name="key">密钥（32位）</param>  
+        /// <param name="aes_ai">加密偏移量</param>  
         /// <returns>字符串</returns>  
-        public static string EncryptByAES(string input, string key)
+        public static string EncryptByAES(string input, string key, string aes_ai = null)
         {
+            if (key.Length != 32)
+                throw new Exception("密钥需要是32位的字符串");
             byte[] keyBytes = Encoding.UTF8.GetBytes(key.Substring(0, 32));
             using (AesCryptoServiceProvider aesAlg = new AesCryptoServiceProvider())
             {
                 aesAlg.Key = keyBytes;
-                aesAlg.IV = Encoding.UTF8.GetBytes(AES_IV.Substring(0, 16));
 
-                ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+                ICryptoTransform encryptor = null;
+                if (!string.IsNullOrEmpty(aes_ai))
+                {
+                    aesAlg.IV = Encoding.UTF8.GetBytes(aes_ai.Substring(0, 16));
+                    encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+                }
+                else
+                {
+                    encryptor = aesAlg.CreateEncryptor(aesAlg.Key, null);
+                }
                 using (MemoryStream msEncrypt = new MemoryStream())
                 {
                     using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
@@ -45,17 +54,27 @@ namespace OdinPlugs.OdinUtils.OdinSecurity.OdinSecurityAes
         /// </summary>  
         /// <param name="input">密文字节数组</param>  
         /// <param name="key">密钥（32位）</param>  
+        /// <param name="aes_ai">加密偏移量</param>  
         /// <returns>返回解密后的字符串</returns>  
-        public static string DecryptByAES(string input, string key)
+        public static string DecryptByAES(string input, string key, string aes_ai = null)
         {
+            if (key.Length != 32)
+                throw new Exception("密钥需要是32位的字符串");
             byte[] inputBytes = StringEncodeConvert.HexStringToByteArray(input);
             byte[] keyBytes = Encoding.UTF8.GetBytes(key.Substring(0, 32));
             using (AesCryptoServiceProvider aesAlg = new AesCryptoServiceProvider())
             {
                 aesAlg.Key = keyBytes;
-                aesAlg.IV = Encoding.UTF8.GetBytes(AES_IV.Substring(0, 16));
-
-                ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+                ICryptoTransform decryptor = null;
+                if (!string.IsNullOrEmpty(aes_ai))
+                {
+                    aesAlg.IV = Encoding.UTF8.GetBytes(aes_ai.Substring(0, 16));
+                    decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+                }
+                else
+                {
+                    decryptor = aesAlg.CreateDecryptor(aesAlg.Key, null);
+                }
                 using (MemoryStream msEncrypt = new MemoryStream(inputBytes))
                 {
                     using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, decryptor, CryptoStreamMode.Read))
