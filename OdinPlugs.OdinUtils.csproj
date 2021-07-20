@@ -6,8 +6,6 @@
     <AssemblyName>OdinPlugs.OdinUtils</AssemblyName>
     <RootNamespace>OdinPlugs.OdinUtils</RootNamespace>
     
-    <GeneratePackageOnBuild>$(OdinGeneratePackageOnBuild)</GeneratePackageOnBuild>
-    <OutputType>$(OdinOutputType)</OutputType>
     <PackageId>$(OdinPackageId)</PackageId>
     <Authors>$(OdinAuthors)</Authors>
     <Company>$(OdinCompany)</Company>
@@ -15,11 +13,10 @@
     <Product>$(OdinProduct)</Product>
     <Description>$(OdinDescription)</Description>
     <RepositoryType>$(OdinRepositoryType)</RepositoryType>
-    <RepositoryType>$(OdinRepositoryType)</RepositoryType>
     <PackageTags>$(OdinPackageTags)</PackageTags>
     <Title>$(OdinAssemblyName)</Title>
-    <PackageProjectUrl>$(OdinGitUrl)/OdinPlugs.Utils.git</PackageProjectUrl>
-    <RepositoryUrl>$(OdinGitUrl)/$(OdinAssemblyName)</RepositoryUrl>
+    <PackageProjectUrl>$(OdinGitUrl)/OdinPlugs.OdinUtils</PackageProjectUrl>
+    <RepositoryUrl>$(OdinGitUrl)/OdinPlugs.OdinUtils</RepositoryUrl>
     <RepositoryBranch>master</RepositoryBranch>
     <PackageIcon>icon.png</PackageIcon>
     <IsPackable>true</IsPackable>
