@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/odinsam/OdinPlugs.OdinUtils/compare/v1.1.1...v1.2.0) (2021-07-23)
+
+
+### Features
+
+* ✨ 部分Utils ([24f7a74](https://github.com/odinsam/OdinPlugs.OdinUtils/commit/24f7a74005bd3089c8c1da52064671627f5f4cfe))
+* 添加dll图片 ([f7b2751](https://github.com/odinsam/OdinPlugs.OdinUtils/commit/f7b2751a94816be741939d22528903e41cc1c8d9))
+* **OdinAdapterMapper:** ✨ 新增对 Mapster 的封装 ([fbaf19e](https://github.com/odinsam/OdinPlugs.OdinUtils/commit/fbaf19eb5e6c7d88b354643fed585fe468b99f99))
+* **OdinTypeAdapterExtensions:** ✨ 扩展 对象映射 和 集合映射 ([6f04735](https://github.com/odinsam/OdinPlugs.OdinUtils/commit/6f047352a71e2b6000b6b6576a8b154545b150ef))
+
 ## [1.1.0](https://github.com/odinsam/OdinPlugs.OdinUtils/compare/v1.1.1...v1.1.0) (2021-07-23)
 
 
