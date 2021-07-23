@@ -5,11 +5,28 @@ using System.Security.Cryptography;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-
+using System.IO;
+using System.Security.Cryptography;
 namespace OdinPlugs.OdinSecurity.StringSecurity.StringSecurityExtensions
 {
     public static class StringSecurity
     {
+        /// <summary>
+        /// string sha256 加密
+        /// </summary>
+        /// <param name="str">需要加密的字符串</param>
+        /// <returns>sha256加密后的值</returns>
+        public static string Sha256(this string str)
+        {
+            Stream stream = new MemoryStream(Encoding.UTF8.GetBytes(str));
+
+            byte[] SHA256Data = Encoding.UTF8.GetBytes(str);
+            SHA256Managed Sha256 = new SHA256Managed();
+            var by = Sha256.ComputeHash(SHA256Data);
+            var result = BitConverter.ToString(by).Replace("-", "").ToLower(); //64
+            return result;
+        }
+
         /// <summary>
         /// 微信掩码 
         /// <code>
