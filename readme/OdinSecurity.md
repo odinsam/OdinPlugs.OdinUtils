@@ -3,6 +3,7 @@
 #### 1. RSA 加密、解密
 
 RSA 加密 - 支持分段加密
+
 ```csharp
 // 加密原文
 string str = "odinsam";
@@ -18,7 +19,7 @@ string decryptStr = RsaHelper.RsaDecrypt(enStr, privateKey, EnumRsaKeyType.PKCS8
 
 RsaHelper 中包含各种秘钥格式的转换，包括
 
-私钥Pem格式转换为xml格式
+私钥 Pem 格式转换为 xml 格式
 
 私钥格式转换 xml->pkcs1
 私钥格式转换 xml->pkcs8
@@ -29,11 +30,10 @@ RsaHelper 中包含各种秘钥格式的转换，包括
 私钥格式转换 pkcs1-> pkcs8
 私钥格式转换 pkcs8-> pkcs1
 
-----
+---
 
-公钥格式转换 
+公钥格式转换
 xml->pem、公钥格式转换 pem->xml
-
 
 #### 2. AES 加密、解密
 
@@ -44,7 +44,18 @@ var encryptStr = StringAesDes.EncryptByAES("原文",密钥（32位),加密偏移
 var decryptStr = StringAesDes.DecryptByAES("密文",密钥（32位),加密偏移量);
 ```
 
-#### 3. 转码、掩码
+#### 3. sha256 加密
+
+```csharp
+// string sha256 加密
+var str = "string value";
+string encryptStr = str.Sha256();
+// stream sha256 加密
+Stream stream = new MemoryStream(Encoding.UTF8.GetBytes(str));
+string encryptStr = stream.Sha256();
+```
+
+#### 4. 转码、掩码
 
 ```csharp
 // 将指定的16进制字符串转换为byte数组
@@ -53,11 +64,11 @@ byte[] bts = StringEncodeConvert.HexStringToByteArray(string s);
 // 将一个byte数组转换成一个格式化的16进制字符串
 string str = StringEncodeConvert.ByteArrayToHexString(byte[] data);
 
-// 微信掩码 
+// 微信掩码
 StringSecurity.AddWxNameMark(this Object entity, string fieldName, string newfieldName);
 
 /// <summary>
-/// 微信掩码 
+/// 微信掩码
 /// <code>
 /// 掩码规则： AA******  保留前两位，后续全部使用 * 掩码
 /// </code>
