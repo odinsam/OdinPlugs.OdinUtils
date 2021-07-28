@@ -11,6 +11,21 @@ namespace OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.OdinAdapterMapper
         /// 集合类型对象转换类型映射
         /// </summary>
         /// <param name="source">需要转换的源对象</param>
+        /// <typeparam name="TSource">源类型</typeparam>
+        /// <typeparam name="TDestination">目标类型</typeparam>
+        /// <typeparam name="T">最终映射转换后的类型</typeparam>
+        /// <returns>通过映射规则转换后的对象, 具体使用请参看 readme</returns>
+        public static T OdinTypeAdapterBuilder<TSource, TDestination, T>(this Object source)
+        {
+            TypeAdapterSetter<TSource, TDestination> adapterSetter = null;
+            var config = new TypeAdapterConfig();
+            adapterSetter = config.NewConfig<TSource, TDestination>();
+            return source.BuildAdapter(config).AdaptToType<T>(); ;
+        }
+        /// <summary>
+        /// 集合类型对象转换类型映射
+        /// </summary>
+        /// <param name="source">需要转换的源对象</param>
         /// <param name="options">自定义转换规则</param>
         /// <typeparam name="TSource">源类型</typeparam>
         /// <typeparam name="TDestination">目标类型</typeparam>
@@ -68,6 +83,22 @@ namespace OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.OdinAdapterMapper
             options(adapterSetter);
             return source.BuildAdapter(config).AdaptToType<T>(); ;
         }
+
+        /// <summary>
+        /// 对象转换类型映射
+        /// </summary>
+        /// <param name="source">需要转换的源对象</param>
+        /// <typeparam name="TSource">源类型</typeparam>
+        /// <typeparam name="TDestination">目标类型</typeparam>
+        /// <returns>通过映射规则转换后的对象, 具体使用请参看 readme</returns>
+        public static TDestination OdinTypeAdapterBuilder<TSource, TDestination>(this TSource source)
+        {
+            TypeAdapterSetter<TSource, TDestination> adapterSetter = null;
+            var config = new TypeAdapterConfig();
+            adapterSetter = config.ForType<TSource, TDestination>();
+            return source.BuildAdapter(config).AdaptToType<TDestination>();
+        }
+
 
         /// <summary>
         /// 对象转换类型映射
