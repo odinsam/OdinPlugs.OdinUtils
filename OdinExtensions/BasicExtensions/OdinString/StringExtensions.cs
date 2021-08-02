@@ -13,6 +13,16 @@ namespace OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.OdinString
 {
     public static class StringExtensions
     {
+
+        /// <summary>
+        /// Indicates whether the specified string is null or an empty string ("").
+        /// </summary>
+        /// <param name="str">The string to test</param>
+        /// <returns>true if the value parameter is null or an empty string (""); otherwise, false.</returns>
+        public static bool IsNullOrEmpty(this string str)
+        {
+            return string.IsNullOrEmpty(str);
+        }
         /// <summary>  
         /// Unicode字符串转为正常字符串  
         /// </summary>  
@@ -21,10 +31,6 @@ namespace OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.OdinString
         public static string UnicodeToString(this string srcText)
         {
             return Regex.Unescape(srcText);
-        }
-        public static string PhoneHideNum(this string phone)
-        {
-            return Regex.Replace(phone, "(\\d{3})\\d{4}(\\d{4})", "$1****$2");
         }
         public static string ToAscii(this string str)
         {

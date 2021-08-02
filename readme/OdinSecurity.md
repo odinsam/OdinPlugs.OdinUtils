@@ -35,16 +35,22 @@ RsaHelper 中包含各种秘钥格式的转换，包括
 公钥格式转换
 xml->pem、公钥格式转换 pem->xml
 
-#### 2. AES 加密、解密
+#### 2. AES、MD5 加密、解密
 
 ```csharp
 // aes 加密字符串
-var encryptStr = StringAesDes.EncryptByAES("原文",密钥（32位),加密偏移量);
+var encryptStr = StringAesDes.EncryptByAES("原文",密钥（32位,可选参数),加密偏移量);
 // aes 解密字符串
-var decryptStr = StringAesDes.DecryptByAES("密文",密钥（32位),加密偏移量);
+var decryptStr = StringAesDes.DecryptByAES("密文",密钥（32位,可选参数),加密偏移量);
+// md5 加密
+var str = "value".ToMd5Lower("加密盐值，可选参数");
+var str = "value".ToMd5Upper("加密盐值，可选参数");
+// md5 两次加密  加密规则:    (str+salt).md5().md5();
+var str = "value".ToMd5Lower2("加密盐值，可选参数");
+var str = "value".ToMd5Upper2("加密盐值，可选参数");
 ```
 
-#### 3. sha256 加密
+#### 3. string、stream sha256 加密
 
 ```csharp
 // string sha256 加密
@@ -112,8 +118,9 @@ JObject obj = StringSecurity.AddNameMark(this Object entity, string fieldName, s
 /// <param name="entity">用户对象</param>
 /// <param name="fieldName">需要掩码的字段</param>
 /// <param name="newfieldName">掩码后的新字段</param>
+/// <param name="strMark">掩码规则，可选参数。默认规则:  $1*******$2 </param>
 /// <returns>具有掩码字段的对象</returns>
-JObject obj = StringSecurity.AddCardIdMark(this Object entity, string fieldName, string newfieldName = null);
+JObject obj = StringSecurity.AddCardIdMark(this Object entity, string fieldName, string newfieldName = null, string strMark = null);
 
 /// <summary>
 /// 电话号码掩码
@@ -124,8 +131,9 @@ JObject obj = StringSecurity.AddCardIdMark(this Object entity, string fieldName,
 /// <param name="entity">用户对象</param>
 /// <param name="fieldName">需要掩码的字段</param>
 /// <param name="newfieldName">掩码后的新字段</param>
+/// <param name="strMark">掩码规则，可选参数。默认规则: $1****$2 </param>
 /// <returns>具有掩码字段的对象</returns>
-JObject obj = StringSecurity.AddPhoneMark(this Object entity, string fieldName, string newfieldName = null);
+JObject obj = StringSecurity.AddPhoneMark(this Object entity, string fieldName, string newfieldName = null, string strMark = null);
 
 /// <summary>
 /// dm5 加密 转小写
@@ -142,4 +150,39 @@ string str = StringSecurity.ToMd5Lower(this string str, int length = 32);
 /// <param name="length"></param>
 /// <returns></returns>
 string str = StringSecurity.ToMd5Upper(this string str, int length = 32);
+```
+
+### 5. 字符串正则
+
+```csharp
+/// 是否是中国大陆身份证号码    默认正则: (\\d{10})\\d{7}([\\dxX]{1})
+bool flag = "str".IsChinaCardId("身份证号正则表达式，可选");
+
+/// 判断中国移动电话号码格式    默认正则: (\\d{3})\\d{4}(\\d{4})
+bool flag = "str".IsChinaMobile("身份证号正则表达式，可选");
+
+/// 判断邮箱地址格式    默认正则: ^([a-zA-Z0-9_-])+.*([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$
+bool flag = "str".IsEmail("身份证号正则表达式，可选");
+
+/// 判断uri格式    默认正则: (https?|ftp|file)://[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]
+bool flag = "str".IsUri("身份证号正则表达式，可选");
+```
+
+### 6. 万年历、农历、属性等日期操作
+
+```csharp
+DateTime dt = DateTime.Now;
+ChineseCalendar cc = new ChineseCalendar(dt);
+Console.WriteLine("阳历：" + cc.DateString);
+Console.WriteLine("属相：" + cc.AnimalString);
+Console.WriteLine("农历：" + cc.ChineseDateString);
+Console.WriteLine("时辰：" + cc.ChineseHour);
+Console.WriteLine("节气：" + cc.ChineseTwentyFourDay);
+Console.WriteLine("节日：" + cc.DateHoliday);
+Console.WriteLine("前一个节气：" + cc.ChineseTwentyFourPrevDay);
+Console.WriteLine("后一个节气：" + cc.ChineseTwentyFourNextDay);
+Console.WriteLine("干支：" + cc.GanZhiDateString);
+Console.WriteLine("星期：" + cc.WeekDayStr);
+Console.WriteLine("星宿：" + cc.ChineseConstellation);
+Console.WriteLine("星座：" + cc.Constellation);
 ```

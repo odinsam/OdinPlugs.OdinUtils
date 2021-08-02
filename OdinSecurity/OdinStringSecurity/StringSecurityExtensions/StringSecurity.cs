@@ -1,12 +1,14 @@
-using System.Collections.Generic;
-using System.Threading;
 using System;
-using System.Security.Cryptography;
-using System.Text;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.OdinString;
+
 namespace OdinPlugs.OdinSecurity.StringSecurity.StringSecurityExtensions
 {
     public static class StringSecurity
@@ -65,23 +67,30 @@ namespace OdinPlugs.OdinSecurity.StringSecurity.StringSecurityExtensions
         public static JObject AddMailMark(this Object entity, string fieldName, string newfieldName)
         {
             var mail = entity.GetType().GetProperty(fieldName).GetValue(entity).ToString().Split('@')[0].ToString();
-            string mailMark = null;
-            if (mail.Length > 3)
+            if (mail.IsEmail())
             {
-                var star = "";
-                for (int i = 0; i < mail.Length - 2; i++)
+                string mailMark = null;
+                if (mail.Length > 3)
                 {
-                    star += "*";
+                    var star = "";
+                    for (int i = 0; i < mail.Length - 2; i++)
+                    {
+                        star += "*";
+                    }
+                    mailMark = mail.Substring(0, 1) + star + mail.Substring(mail.Length - 1, 1);
                 }
-                mailMark = mail.Substring(0, 1) + star + mail.Substring(mail.Length - 1, 1);
+                else
+                {
+                    mailMark = mail;
+                }
+                var jobj = JObject.Parse(JsonConvert.SerializeObject(entity));
+                jobj.Add(newfieldName ?? $"Mark{fieldName}", mailMark);
+                return jobj;
             }
             else
             {
-                mailMark = mail;
+                throw new Exception("邮箱格式不正确");
             }
-            var jobj = JObject.Parse(JsonConvert.SerializeObject(entity));
-            jobj.Add(newfieldName ?? $"Mark{fieldName}", mailMark);
-            return jobj;
         }
 
         /// <summary>
@@ -130,13 +139,20 @@ namespace OdinPlugs.OdinSecurity.StringSecurity.StringSecurityExtensions
         /// <param name="fieldName">需要掩码的字段</param>
         /// <param name="newfieldName">掩码后的新字段</param>
         /// <returns>具有掩码字段的对象</returns>
-        public static JObject AddCardIdMark(this Object entity, string fieldName, string newfieldName = null)
+        public static JObject AddCardIdMark(this Object entity, string fieldName, string newfieldName = null, string strMark = null)
         {
             var cardId = entity.GetType().GetProperty(fieldName).GetValue(entity).ToString();
-            var cardIdMark = cardId.Substring(0, 10) + "*******" + cardId.Substring(cardId.Length - 1, 1);
-            var jobj = JObject.Parse(JsonConvert.SerializeObject(entity));
-            jobj.Add(newfieldName ?? $"Mark{fieldName}", cardIdMark);
-            return jobj;
+            if (cardId.IsChinaCardId())
+            {
+                var cardIdMark = Regex.Replace(cardId, StringRegexExtensions.RegexChinaCardId, strMark ?? StringRegexExtensions.StringMarkChinaCardId);
+                var jobj = JObject.Parse(JsonConvert.SerializeObject(entity));
+                jobj.Add(newfieldName ?? $"Mark{fieldName}", cardIdMark);
+                return jobj;
+            }
+            else
+            {
+                throw new Exception("身份证格式不正确");
+            }
         }
 
         /// <summary>
@@ -149,25 +165,32 @@ namespace OdinPlugs.OdinSecurity.StringSecurity.StringSecurityExtensions
         /// <param name="fieldName">需要掩码的字段</param>
         /// <param name="newfieldName">掩码后的新字段</param>
         /// <returns>具有掩码字段的对象</returns>
-        public static JObject AddPhoneMark(this Object entity, string fieldName, string newfieldName = null)
+        public static JObject AddPhoneMark(this Object entity, string fieldName, string newfieldName = null, string strMark = null)
         {
             var phone = entity.GetType().GetProperty(fieldName).GetValue(entity).ToString();
-            var phoneMark = phone.Substring(0, 3) + "****" + phone.Substring(7);
-            var jobj = JObject.Parse(JsonConvert.SerializeObject(entity));
-            jobj.Add(newfieldName ?? $"Mark{fieldName}", phoneMark);
-            return jobj;
+            if (phone.IsChinaMobile())
+            {
+                var phoneMark = Regex.Replace(phone, StringRegexExtensions.RegexChinaMobile, strMark ?? StringRegexExtensions.StringMarkChinaMobile);
+                var jobj = JObject.Parse(JsonConvert.SerializeObject(entity));
+                jobj.Add(newfieldName ?? $"Mark{fieldName}", phoneMark);
+                return jobj;
+            }
+            else
+            {
+                throw new Exception("移动电话号码格式不正确");
+            }
         }
 
         /// <summary>
-        /// dm5 加密 转小写
+        /// md5 加密 转小写
         /// </summary>
         /// <param name="str">需要加密的字符串</param>
         /// <param name="length"></param>
         /// <returns></returns>
-        public static string ToMd5Lower(this string str, int length = 32)
+        public static string ToMd5Lower(this string str, string salt = null, int length = 32)
         {
             MD5 md5 = MD5.Create();
-            byte[] bt = md5.ComputeHash(Encoding.UTF8.GetBytes(str));
+            byte[] bt = md5.ComputeHash(Encoding.UTF8.GetBytes(str + (salt.IsNullOrEmpty() ? "" : salt)));
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < bt.Length; i++)
             {
@@ -176,15 +199,28 @@ namespace OdinPlugs.OdinSecurity.StringSecurity.StringSecurityExtensions
             return sb.ToString().ToLower().Substring(0, length);
         }
         /// <summary>
-        /// dm5 加密 转大写
+        /// 两次 md5 加密 转小写
+        /// <code>
+        /// e.g (str+salt).md5().md5()
+        /// </code>
         /// </summary>
         /// <param name="str">需要加密的字符串</param>
         /// <param name="length"></param>
         /// <returns></returns>
-        public static string ToMd5Upper(this string str, int length = 32)
+        public static string ToMd5Lower2(this string str, string salt = null, int length = 32)
+        {
+            return str.ToMd5Lower(salt).ToMd5Lower();
+        }
+        /// <summary>
+        /// md5 加密 转大写
+        /// </summary>
+        /// <param name="str">需要加密的字符串</param>
+        /// <param name="length"></param>
+        /// <returns></returns>
+        public static string ToMd5Upper(this string str, string salt = null, int length = 32)
         {
             MD5 md5 = MD5.Create();
-            byte[] bt = md5.ComputeHash(Encoding.UTF8.GetBytes(str));
+            byte[] bt = md5.ComputeHash(Encoding.UTF8.GetBytes(str + (salt.IsNullOrEmpty() ? "" : salt)));
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < bt.Length; i++)
             {
@@ -192,6 +228,18 @@ namespace OdinPlugs.OdinSecurity.StringSecurity.StringSecurityExtensions
             }
             return sb.ToString().ToUpper().Substring(0, length);
         }
-
+        /// <summary>
+        /// 两次 md5 加密 转大写
+        /// <code>
+        /// e.g (str+salt).md5().md5()
+        /// </code>
+        /// </summary>
+        /// <param name="str">需要加密的字符串</param>
+        /// <param name="length"></param>
+        /// <returns></returns>
+        public static string ToMd5Upper2(this string str, string salt = null, int length = 32)
+        {
+            return str.ToMd5Upper(salt).ToMd5Upper();
+        }
     }
 }
