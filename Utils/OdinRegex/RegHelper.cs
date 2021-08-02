@@ -38,13 +38,13 @@ namespace OdinPlugs.OdinUtils.Utils.OdinRegex
         #endregion
 
         #region 用于判断字符串是否是对应类型（或是否包含对应类型的字符）  
-        /**//// <summary>  
-            /// 用于判断字符串是否是对应类型  
-            /// </summary>  
-            /// <param name="strVerifyString">String，需要判断的字符串</param>  
-            /// <param name="op">Operation枚举，用于选择需要进行的操作</param>  
-            /// <param name="IsEntirety">Boolean，判断是完全匹配还是包含匹配模式（仅适用于非类型判断时）</param>  
-            /// <returns></returns>  
+        /// <summary>  
+        /// 用于判断字符串是否是对应类型  
+        /// </summary>  
+        /// <param name="strVerifyString">String，需要判断的字符串</param>  
+        /// <param name="op">Operation枚举，用于选择需要进行的操作</param>  
+        /// <param name="IsEntirety">Boolean，判断是完全匹配还是包含匹配模式（仅适用于非类型判断时）</param>  
+        /// <returns></returns>  
         public bool IsAccordType(string strVerifyString, Operation op, bool IsEntirety)
         {
             _String = strVerifyString;
@@ -613,7 +613,7 @@ namespace OdinPlugs.OdinUtils.Utils.OdinRegex
         #endregion
 
         #region 通用正则表达式判断函数  
-        //// <summary>  
+        /// <summary>  
         /// 通用正则表达式判断函数  
         /// </summary>  
         /// <param name="strVerifyString">String，用于匹配的字符串</param>  

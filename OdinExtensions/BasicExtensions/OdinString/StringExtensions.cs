@@ -32,6 +32,11 @@ namespace OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.OdinString
         {
             return Regex.Unescape(srcText);
         }
+        /// <summary>
+        /// string to ascii
+        /// </summary>
+        /// <param name="str">string</param>
+        /// <returns>ascii code</returns>
         public static string ToAscii(this string str)
         {
             byte[] array = System.Text.Encoding.ASCII.GetBytes(str);
@@ -45,19 +50,33 @@ namespace OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.OdinString
         }
 
 
-
+        /// <summary>
+        /// StringToBase64String
+        /// </summary>
+        /// <param name="str">string</param>
+        /// <returns>Base64String</returns>
         public static string StringToBase64String(this string str)
         {
             byte[] bt = System.Text.Encoding.UTF8.GetBytes(str);
             return Convert.ToBase64String(bt);
         }
 
+        /// <summary>
+        /// Base64StringToString
+        /// </summary>
+        /// <param name="str">Base64String</param>
+        /// <returns>String</returns>
         public static string Base64StringToString(this string str)
         {
             byte[] bt = Convert.FromBase64String(str);
             return System.Text.Encoding.UTF8.GetString(bt);
         }
 
+        /// <summary>
+        /// 格式化json字符串
+        /// </summary>
+        /// <param name="str">json string</param>
+        /// <returns>json format string</returns>
         public static string ToJsonFormatString(this string str)
         {
             //格式化json字符串
@@ -106,12 +125,23 @@ namespace OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.OdinString
             return xmlString;
         }
 
+        /// <summary>
+        /// to xml string
+        /// </summary>
+        /// <param name="XMLstring">xml string</param>
+        /// <returns>xml format string</returns>
         public static string ToXmlFormatString(this string XMLstring)
         {
             XmlDocument xmlDocument = GetXmlDocument(XMLstring);
             return ConvertXmlDocumentTostring(xmlDocument);
         }
 
+        /// <summary>
+        /// string转16进制
+        /// </summary>
+        /// <param name="strASCII">string to ascii</param>
+        /// <param name="separator">分隔符</param>
+        /// <returns>16进制的string</returns>
         public static string ConvertStringToHex(this string strASCII, string separator = null)
         {
             StringBuilder sbHex = new StringBuilder();
@@ -123,6 +153,12 @@ namespace OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.OdinString
             return sbHex.ToString();
         }
 
+        /// <summary>
+        /// 16进制转string
+        /// </summary>
+        /// <param name="HexValue">16进制string</param>
+        /// <param name="separator">分隔符</param>
+        /// <returns>string说</returns>
         public static string ConvertHexToString(this string HexValue, string separator = null)
         {
             HexValue = string.IsNullOrEmpty(separator) ? HexValue : HexValue.Replace(string.Empty, separator);
@@ -135,16 +171,31 @@ namespace OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.OdinString
             return sbStrValue.ToString();
         }
 
+        /// <summary>
+        /// string to bytes
+        /// </summary>
+        /// <param name="str">string</param>
+        /// <returns>byte array</returns>
         public static byte[] GetBytesFromString(this string str)
         {
             return System.Text.Encoding.Default.GetBytes(str);
         }
 
+        /// <summary>
+        /// bytes to string
+        /// </summary>
+        /// <param name="bytes">byte array</param>
+        /// <returns>string</returns>
         public static string GetStringFromBytes(this byte[] bytes)
         {
             return System.Text.Encoding.Default.GetString(bytes);
         }
 
+        /// <summary>
+        /// Utf8ToGb2312
+        /// </summary>
+        /// <param name="text">string</param>
+        /// <returns>Gb2312 string</returns>
         public static string Utf8ToGb2312(this string text)
         {
             //声明字符集   
@@ -160,6 +211,13 @@ namespace OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.OdinString
             return gb2312.GetString(utf);
         }
 
+        /// <summary>
+        /// StringEncode
+        /// </summary>
+        /// <param name="text">string</param>
+        /// <param name="sourceEncode">source encode</param>
+        /// <param name="transEncode">trans Encode</param>
+        /// <returns>string</returns>
         public static string ConvertStringEncode(this string text, Encoding sourceEncode, Encoding transEncode)
         {
             byte[] utf;
@@ -169,6 +227,13 @@ namespace OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.OdinString
             return transEncode.GetString(utf);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="sourceEncodeStr"></param>
+        /// <param name="transEncodeStr"></param>
+        /// <returns></returns>
         public static string ConvertStringEncode(this string text, string sourceEncodeStr, string transEncodeStr)
         {
             Encoding sourceEncode = Encoding.GetEncoding(sourceEncodeStr);
