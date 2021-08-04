@@ -8,9 +8,10 @@
 
 项目部分说明在 [OdinSam's blog](https://www.odinsam.com/) 的博客中有文章说明
 
-changelog:
+### changelog
 
 v1.0.6
-添加 string、stream 的 sha256 加密扩展方法
-添加 正则判断
-添加 农历、万年历、属相、天干地支等日期操作
+
+-   添加 string、stream 的 sha256 加密扩展方法
+-   添加 正则判断
+-   添加 农历、万年历、属相、天干地支等日期操作
