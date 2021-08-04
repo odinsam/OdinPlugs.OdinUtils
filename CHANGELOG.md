@@ -1,8 +1,8 @@
-## <small>1.0.6 (2021-07-23)</small>
+# Changelog
 
-* chore(release): 1.0.6 ([289379d](https://github.com/odinsam/OdinPlugs.OdinUtils/commit/289379d))
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-
+### [1.0.7](https://github.com/odinsam/OdinPlugs.OdinUtils/compare/v1.0.6...v1.0.7) (2021-08-04)
 
 ## 1.2.0 (2021-07-23)
 
@@ -70,6 +70,3 @@
 * feat(OdinUtils.Utils): ✨ regex 正则判断 ([2c1680b](https://github.com/odinsam/OdinPlugs.OdinUtils/commit/2c1680b))
 * feat(OdinUtils.Utils): ✨ Time 时间操作 ([18a474c](https://github.com/odinsam/OdinPlugs.OdinUtils/commit/18a474c))
 * Initial commit ([7c272db](https://github.com/odinsam/OdinPlugs.OdinUtils/commit/7c272db))
-
-
-
