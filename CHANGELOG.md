@@ -1,8 +1,23 @@
-# Changelog
+## <small>1.0.7 (2021-08-04)</small>
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+* chore(release): 1.0.7 ([a50afb6](https://github.com/odinsam/OdinPlugs.OdinUtils/commit/a50afb6))
+* ✨ feat(*): 扩展基础功能 ([d227965](https://github.com/odinsam/OdinPlugs.OdinUtils/commit/d227965))
+* ✨ feat(*): 新增空参方法 ([2869f1f](https://github.com/odinsam/OdinPlugs.OdinUtils/commit/2869f1f))
+* 📃 docs(*): changelog ([5d20be5](https://github.com/odinsam/OdinPlugs.OdinUtils/commit/5d20be5))
+* 📃 docs(*): readme ([a32709f](https://github.com/odinsam/OdinPlugs.OdinUtils/commit/a32709f))
+* 📃 docs(*): readme ([fc88210](https://github.com/odinsam/OdinPlugs.OdinUtils/commit/fc88210))
+* 📃 docs(*): readme ([ef0a0d6](https://github.com/odinsam/OdinPlugs.OdinUtils/commit/ef0a0d6))
+* 📃 docs(*): readme & ci ([c8d687f](https://github.com/odinsam/OdinPlugs.OdinUtils/commit/c8d687f))
+* no message ([61ca1de](https://github.com/odinsam/OdinPlugs.OdinUtils/commit/61ca1de))
+* doc: [*] 添加注释 ([33a3e8c](https://github.com/odinsam/OdinPlugs.OdinUtils/commit/33a3e8c))
 
-### [1.0.7](https://github.com/odinsam/OdinPlugs.OdinUtils/compare/v1.0.6...v1.0.7) (2021-08-04)
+
+
+## <small>1.0.6 (2021-07-23)</small>
+
+* chore(release): 1.0.6 ([289379d](https://github.com/odinsam/OdinPlugs.OdinUtils/commit/289379d))
+
+
 
 ## 1.2.0 (2021-07-23)
 
@@ -70,3 +85,6 @@ All notable changes to this project will be documented in this file. See [standa
 * feat(OdinUtils.Utils): ✨ regex 正则判断 ([2c1680b](https://github.com/odinsam/OdinPlugs.OdinUtils/commit/2c1680b))
 * feat(OdinUtils.Utils): ✨ Time 时间操作 ([18a474c](https://github.com/odinsam/OdinPlugs.OdinUtils/commit/18a474c))
 * Initial commit ([7c272db](https://github.com/odinsam/OdinPlugs.OdinUtils/commit/7c272db))
+
+
+
