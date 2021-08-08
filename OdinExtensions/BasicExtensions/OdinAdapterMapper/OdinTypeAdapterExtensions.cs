@@ -33,7 +33,7 @@ namespace OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.OdinAdapterMapper
         /// <returns>通过映射规则转换后的对象, 具体使用请参看 readme</returns>
         public static T OdinTypeAdapterBuilder<TSource, TDestination, T>(
             this Object source,
-            Action<TypeAdapterSetter<TSource, TDestination>> options = null
+            Action<TypeAdapterSetter<TSource, TDestination>> options
             )
         {
             TypeAdapterSetter<TSource, TDestination> adapterSetter = null;
@@ -54,7 +54,7 @@ namespace OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.OdinAdapterMapper
         /// <returns>通过映射规则转换后的对象, 具体使用请参看 readme</returns>
         public static T OdinTypeAdapterBuilder<TSource, TDestination, T>(
             this Object source,
-            TypeAdapterConfig config = null
+            TypeAdapterConfig config
             )
         {
             if (config == null)
@@ -84,6 +84,19 @@ namespace OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.OdinAdapterMapper
             return source.BuildAdapter(config).AdaptToType<T>(); ;
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
         /// <summary>
         /// 对象转换类型映射
         /// </summary>
@@ -110,7 +123,7 @@ namespace OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.OdinAdapterMapper
         /// <returns>通过映射规则转换后的对象, 具体使用请参看 readme</returns>
         public static TDestination OdinTypeAdapterBuilder<TSource, TDestination>(
             this TSource source,
-            Action<TypeAdapterSetter<TSource, TDestination>> options = null
+            Action<TypeAdapterSetter<TSource, TDestination>> options
             )
         {
             TypeAdapterSetter<TSource, TDestination> adapterSetter = null;
@@ -130,7 +143,7 @@ namespace OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.OdinAdapterMapper
         /// <returns>通过映射规则转换后的对象, 具体使用请参看 readme</returns>
         public static TDestination OdinTypeAdapterBuilder<TSource, TDestination>(
             this TSource source,
-            TypeAdapterConfig config = null
+            TypeAdapterConfig config
             )
         {
             TypeAdapterSetter<TSource, TDestination> adapterSetter = null;
