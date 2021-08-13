@@ -1,7 +1,5 @@
 using System;
-using System.Linq.Expressions;
 using Mapster;
-using OdinPlugs.OdinUtils.Utils.OdinAdapterMapper;
 
 namespace OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.OdinAdapterMapper
 {
@@ -15,7 +13,7 @@ namespace OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.OdinAdapterMapper
         /// <typeparam name="TDestination">目标类型</typeparam>
         /// <typeparam name="T">最终映射转换后的类型</typeparam>
         /// <returns>通过映射规则转换后的对象, 具体使用请参看 readme</returns>
-        public static T OdinTypeAdapterBuilder<TSource, TDestination, T>(this Object source)
+        public static T OdinCollectionAdapter<TSource, TDestination, T>(this Object source)
         {
             TypeAdapterSetter<TSource, TDestination> adapterSetter = null;
             var config = new TypeAdapterConfig();
@@ -31,7 +29,7 @@ namespace OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.OdinAdapterMapper
         /// <typeparam name="TDestination">目标类型</typeparam>
         /// <typeparam name="T">最终映射转换后的类型</typeparam>
         /// <returns>通过映射规则转换后的对象, 具体使用请参看 readme</returns>
-        public static T OdinTypeAdapterBuilder<TSource, TDestination, T>(
+        public static T OdinCollectionAdapter<TSource, TDestination, T>(
             this Object source,
             Action<TypeAdapterSetter<TSource, TDestination>> options
             )
@@ -52,7 +50,7 @@ namespace OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.OdinAdapterMapper
         /// <typeparam name="TDestination">目标类型</typeparam>
         /// <typeparam name="T">最终映射转换后的类型</typeparam>
         /// <returns>通过映射规则转换后的对象, 具体使用请参看 readme</returns>
-        public static T OdinTypeAdapterBuilder<TSource, TDestination, T>(
+        public static T OdinCollectionAdapter<TSource, TDestination, T>(
             this Object source,
             TypeAdapterConfig config
             )
@@ -73,7 +71,7 @@ namespace OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.OdinAdapterMapper
         /// <typeparam name="TDestination">目标类型</typeparam>
         /// <typeparam name="T">最终映射转换后的类型</typeparam>
         /// <returns>通过映射规则转换后的对象, 具体使用请参看 readme</returns>
-        public static T OdinTypeAdapterBuilder<TSource, TDestination, T>(
+        public static T OdinCollectionAdapter<TSource, TDestination, T>(
             this Object source,
             Action<TypeAdapterSetter<TSource, TDestination>> options,
             TypeAdapterConfig config
@@ -92,11 +90,6 @@ namespace OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.OdinAdapterMapper
 
 
 
-
-
-
-
-
         /// <summary>
         /// 对象转换类型映射
         /// </summary>
@@ -104,7 +97,7 @@ namespace OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.OdinAdapterMapper
         /// <typeparam name="TSource">源类型</typeparam>
         /// <typeparam name="TDestination">目标类型</typeparam>
         /// <returns>通过映射规则转换后的对象, 具体使用请参看 readme</returns>
-        public static TDestination OdinTypeAdapterBuilder<TSource, TDestination>(this TSource source)
+        public static TDestination OdinAdapter<TSource, TDestination>(this Object source)
         {
             TypeAdapterSetter<TSource, TDestination> adapterSetter = null;
             var config = new TypeAdapterConfig();
@@ -121,7 +114,7 @@ namespace OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.OdinAdapterMapper
         /// <typeparam name="TSource">源类型</typeparam>
         /// <typeparam name="TDestination">目标类型</typeparam>
         /// <returns>通过映射规则转换后的对象, 具体使用请参看 readme</returns>
-        public static TDestination OdinTypeAdapterBuilder<TSource, TDestination>(
+        public static TDestination OdinAdapter<TSource, TDestination>(
             this TSource source,
             Action<TypeAdapterSetter<TSource, TDestination>> options
             )
@@ -141,7 +134,7 @@ namespace OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.OdinAdapterMapper
         /// <typeparam name="TSource">源类型</typeparam>
         /// <typeparam name="TDestination">目标类型</typeparam>
         /// <returns>通过映射规则转换后的对象, 具体使用请参看 readme</returns>
-        public static TDestination OdinTypeAdapterBuilder<TSource, TDestination>(
+        public static TDestination OdinAdapter<TSource, TDestination>(
             this TSource source,
             TypeAdapterConfig config
             )
@@ -161,7 +154,7 @@ namespace OdinPlugs.OdinUtils.OdinExtensions.BasicExtensions.OdinAdapterMapper
         /// <typeparam name="TSource">源类型</typeparam>
         /// <typeparam name="TDestination">目标类型</typeparam>
         /// <returns>通过映射规则转换后的对象, 具体使用请参看 readme</returns>
-        public static TDestination OdinTypeAdapterBuilder<TSource, TDestination>(
+        public static TDestination OdinAdapter<TSource, TDestination>(
             this TSource source,
             Action<TypeAdapterSetter<TSource, TDestination>> options,
             TypeAdapterConfig config
