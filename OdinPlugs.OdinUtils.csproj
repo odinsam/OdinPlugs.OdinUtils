@@ -37,5 +37,6 @@
     <PackageReference Include="Serilog.Sinks.File" Version="4.1.0" />
     <PackageReference Include="Serilog.Sinks.MySQL" Version="4.0.0" />
     <PackageReference Include="Unicorn.AspNetCore" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.5" />
   </ItemGroup>
 </Project>
